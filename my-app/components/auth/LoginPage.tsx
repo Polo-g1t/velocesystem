@@ -3,92 +3,134 @@
 import React, { useState } from 'react';
 import { useEMS } from '../../context/EMSContext';
 
-export const VeloceLogo = ({ className = 'w-8 h-8' }: { className?: string }) => (
-  <svg
-    viewBox="0 0 100 100"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className={className}
-  >
-    <path
-      d="M15 25L50 10L85 25V55L50 90L15 55V25Z"
-      stroke="#5A6270"
-      strokeWidth="6"
-      strokeLinejoin="round"
-      fill="#282D37"
-    />
-    <path
-      d="M30 52L48 34L40 30L68 24L62 52L54 44L36 62L30 52Z"
-      fill="#8892A0"
-    />
-    <path
-      d="M50 13L82 26V53L50 85L50 13Z"
-      fill="white"
-      fillOpacity="0.08"
-    />
-  </svg>
-);
-
-export const VeloceBigEmblem = () => (
+// High-fidelity Veloce Shield Emblem SVG matching exact design mockup
+export const VeloceEmblemPath = () => (
   <svg
     viewBox="0 0 320 320"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    className="w-64 h-64 md:w-72 md:h-72 drop-shadow-2xl"
+    className="w-full h-full"
   >
-    {/* Outer Shield Backing */}
+    {/* Outer Shield Frame with metallic border */}
     <path
-      d="M50 85L160 35L270 85V180C270 230 160 285 160 285C160 285 50 230 50 180V85Z"
+      d="M160 38L56 86V142L40 162L62 178V204L160 278L258 204V86L160 38Z"
       fill="#282D36"
-      stroke="#454D5C"
-      strokeWidth="10"
+      stroke="#4A5260"
+      strokeWidth="9"
       strokeLinejoin="round"
     />
-    {/* Inner 3D Facets - Dark Left */}
+
+    {/* Shield Facet - Left Dark Bevel */}
     <path
-      d="M60 92L160 48V270C160 270 60 220 60 175V92Z"
+      d="M62 92L160 48V268L68 198V174L48 158L62 140V92Z"
+      fill="#22262E"
+    />
+
+    {/* Shield Facet - Right Midtone Bevel */}
+    <path
+      d="M160 48L252 92V198L160 268V48Z"
+      fill="#363C47"
+    />
+
+    {/* Inner Shield Cavity Fill */}
+    <path
+      d="M74 100L160 58L240 100V190L160 252L74 190V100Z"
       fill="#20242C"
     />
-    {/* Inner 3D Facets - Light Right */}
-    <path
-      d="M160 48L260 92V175C260 220 160 270 160 270V48Z"
-      fill="#3A404D"
-    />
-    {/* The Dynamic Arrow and Lightning Geometry */}
-    <g filter="drop-shadow(0px 8px 16px rgba(0,0,0,0.5))">
-      {/* Arrow Shaft Lower */}
+
+    {/* Central Dynamic Arrow / Lightning Motif */}
+    <g filter="drop-shadow(0px 8px 14px rgba(0,0,0,0.55))">
+      {/* 3D Arrow Head - Top Light Surface */}
       <path
-        d="M95 180L145 125L125 110L195 90L180 160L160 140L115 195L95 180Z"
-        fill="#616A79"
+        d="M256 74L176 80L194 112L256 74Z"
+        fill="#828D9F"
       />
-      {/* Arrow Highlight Facet */}
+      {/* 3D Arrow Head - Bottom Right Surface */}
       <path
-        d="M145 125L195 90L180 160L160 140L145 125Z"
-        fill="#7D8797"
+        d="M256 74L194 112L254 150L256 74Z"
+        fill="#5D6675"
       />
-      {/* Arrow Shadow Facet */}
+
+      {/* Main Diagonal Arrow Shaft - Top Light Facet */}
       <path
-        d="M95 180L145 125L160 140L115 195L95 180Z"
+        d="M194 112L132 174L104 148L88 174L148 234L166 216L218 164L194 112Z"
+        fill="#707A8A"
+      />
+
+      {/* Shaft Lower Bevel / Shadow Edge */}
+      <path
+        d="M88 174L148 234L136 246L76 186L88 174Z"
         fill="#4A5260"
       />
-      {/* Lower Shield Crest Notch */}
+
+      {/* Left Lightning Barb Point */}
       <path
-        d="M160 215L195 180L210 195L160 245L110 195L125 180L160 215Z"
-        fill="#555E6D"
+        d="M104 148L88 174L60 162L82 142L104 148Z"
+        fill="#5A6372"
+      />
+
+      {/* Inner Lower Shield Crest / Loop */}
+      <path
+        d="M148 234L160 222L196 186L210 200L160 250L136 226L148 234Z"
+        fill="#535B69"
+      />
+      <path
+        d="M196 186L210 200V160L196 186Z"
+        fill="#667080"
       />
     </g>
   </svg>
 );
 
-export const LoginPage: React.FC = () => {
+export const VeloceLogo = ({ className = 'w-9 h-9' }: { className?: string }) => (
+  <div className={`${className} shrink-0`}>
+    <VeloceEmblemPath />
+  </div>
+);
+
+export const VeloceBigEmblem = () => (
+  <div className="w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 flex items-center justify-center">
+    <VeloceEmblemPath />
+  </div>
+);
+
+// Red circular X error icon matching Screen 2
+const ValidationXIcon = () => (
+  <svg
+    viewBox="0 0 24 24"
+    className="w-5 h-5"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle cx="12" cy="12" r="9.5" stroke="#E04B4B" strokeWidth="2.2" />
+    <path
+      d="M8.5 8.5L15.5 15.5M15.5 8.5L8.5 15.5"
+      stroke="#E04B4B"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
+interface LoginPageProps {
+  initialValidationState?: boolean;
+}
+
+export const LoginPage: React.FC<LoginPageProps> = ({ initialValidationState = false }) => {
   const { login, setAuthView } = useEMS();
 
-  const [username, setUsername] = useState('');
+  // Form states
+  const [username, setUsername] = useState(initialValidationState ? 'Jaden' : '');
   const [password, setPassword] = useState('');
-  const [usernameError, setUsernameError] = useState<string | null>(null);
-  const [passwordError, setPasswordError] = useState<string | null>(null);
+  const [usernameError, setUsernameError] = useState<string | null>(
+    initialValidationState ? 'The username does not exist' : null
+  );
+  const [passwordError, setPasswordError] = useState<string | null>(
+    initialValidationState ? 'Please enter your password' : null
+  );
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Form submission handler
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setUsernameError(null);
     setPasswordError(null);
@@ -96,7 +138,7 @@ export const LoginPage: React.FC = () => {
     let hasError = false;
 
     if (!username.trim()) {
-      setUsernameError('Please enter your username');
+      setUsernameError('The username does not exist');
       hasError = true;
     }
 
@@ -107,63 +149,70 @@ export const LoginPage: React.FC = () => {
 
     if (hasError) return;
 
-    const res = login(username, password);
+    // Check credentials against registered employees / managers
+    const res = await login(username, password);
     if (!res.success) {
-      if (res.message?.toLowerCase().includes('username') || username.toLowerCase() !== 'pgonzalez' && username.toLowerCase() !== 'mrivera') {
-        setUsernameError('The username does not exist');
-      }
-      if (!password) {
-        setPasswordError('Please enter your password');
-      } else if (res.message?.toLowerCase().includes('password')) {
+      if (res.message?.toLowerCase().includes('password')) {
         setPasswordError('Incorrect password entered');
+      } else {
+        setUsernameError('The username does not exist');
       }
     }
   };
 
-  // Demo auto-fill helpers
-  const handleFillPolo = () => {
-    setUsername('pgonzalez');
-    setPassword('password123');
+  // Demo helpers to instantly switch between Screen 1 and Screen 2
+  const handleSetScreen1 = () => {
+    setUsername('');
+    setPassword('');
     setUsernameError(null);
     setPasswordError(null);
   };
 
-  const handleFillManager = () => {
-    setUsername('mrivera');
-    setPassword('manager123');
-    setUsernameError(null);
-    setPasswordError(null);
-  };
-
-  const handleTriggerValidationState = () => {
+  const handleSetScreen2 = () => {
     setUsername('Jaden');
     setPassword('');
     setUsernameError('The username does not exist');
     setPasswordError('Please enter your password');
   };
 
+  const handleFillPoloEmployee = () => {
+    setUsername('gonzalezpolo256@gmail.com');
+    setPassword('VeloceDefault#2026');
+    setUsernameError(null);
+    setPasswordError(null);
+  };
+
+  const handleFillMarcusManager = () => {
+    setUsername('j7core256@gmail.com');
+    setPassword('ManagerDefault#2026');
+    setUsernameError(null);
+    setPasswordError(null);
+  };
+
   return (
-    <div className="min-h-screen w-full bg-[#1E222B] text-white flex flex-col justify-between p-6 sm:p-10 lg:p-14 font-sans">
+    <div className="min-h-screen w-full bg-[#262B34] text-white flex flex-col justify-between p-6 sm:p-10 lg:p-12 font-sans select-none">
       {/* Top Header Logo */}
-      <div className="flex items-center gap-3">
-        <VeloceLogo className="w-8 h-8 sm:w-10 sm:h-10" />
-        <span className="text-2xl sm:text-3xl font-black tracking-tight text-white">
+      <div className="flex items-center gap-3.5">
+        <VeloceLogo className="w-9 h-9 sm:w-10 sm:h-10" />
+        <span className="text-2xl sm:text-[28px] font-bold tracking-tight text-white font-sans">
           Veloce Systems
         </span>
       </div>
 
-      {/* Main Grid: Left Login Form & Right Welcome Hero Card */}
-      <div className="max-w-6xl w-full mx-auto my-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center pt-6 pb-6">
+      {/* Main Grid: Left Login Form & Right Welcome Card */}
+      <div className="max-w-6xl w-full mx-auto my-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center py-6">
         {/* Left Side: Login Form */}
-        <div className="lg:col-span-5 max-w-md w-full mx-auto lg:mx-0 space-y-7">
-          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-wider text-white">
+        <div className="lg:col-span-5 max-w-[400px] w-full mx-auto lg:mx-0">
+          <h1 className="text-2xl sm:text-[28px] font-bold tracking-wide text-white mb-8">
             WELCOME BACK!
           </h1>
 
-          <form onSubmit={handleSubmit} className="space-y-5">
-            {/* Username Input */}
-            <div className="space-y-1.5">
-              <label className="block text-sm font-medium text-white">Username</label>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Username Input Field */}
+            <div>
+              <label className="block text-sm font-medium text-white mb-2">
+                Username or Company Email
+              </label>
               <div className="relative">
                 <input
                   type="text"
@@ -172,39 +221,30 @@ export const LoginPage: React.FC = () => {
                     setUsername(e.target.value);
                     if (usernameError) setUsernameError(null);
                   }}
-                  placeholder="Johndoe"
-                  className={`w-full bg-[#D1D5DB] text-slate-900 placeholder-slate-500 px-3.5 py-2.5 rounded-md text-sm font-medium focus:outline-none transition-all ${
-                    usernameError
-                      ? 'border-2 border-[#E04B4B] pr-10'
-                      : 'border border-transparent focus:ring-2 focus:ring-slate-400'
-                  }`}
+                  placeholder={usernameError ? '' : 'pgonzalez or gonzalezpolo256@gmail.com'}
+                  className={`w-full bg-[#CFD3D8] text-slate-900 placeholder-[#7E8590] px-4 py-2.5 rounded-md text-sm font-medium focus:outline-none transition-all ${usernameError
+                    ? 'border-2 border-[#E04B4B] pr-10'
+                    : 'border border-transparent focus:ring-2 focus:ring-slate-400'
+                    }`}
                 />
                 {usernameError && (
-                  <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
-                    <svg
-                      className="w-5 h-5 text-[#E04B4B]"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm3.707 13.707a1 1 0 01-1.414 0L12 13.414l-2.293 2.293a1 1 0 01-1.414-1.414L10.586 12 8.293 9.707a1 1 0 011.414-1.414L12 10.586l2.293-2.293a1 1 0 011.414 1.414L13.414 12l2.293 2.293a1 1 0 010 1.414z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
+                  <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none flex items-center justify-center">
+                    <ValidationXIcon />
                   </div>
                 )}
               </div>
               {usernameError && (
-                <p className="text-xs font-semibold text-[#E04B4B] pt-0.5">
+                <p className="text-[13px] font-medium text-[#E04B4B] mt-1.5 leading-tight">
                   {usernameError}
                 </p>
               )}
             </div>
 
-            {/* Password Input */}
-            <div className="space-y-1.5">
-              <label className="block text-sm font-medium text-white">Password</label>
+            {/* Password Input Field */}
+            <div className={usernameError ? 'pt-1' : ''}>
+              <label className="block text-sm font-medium text-white mb-2">
+                Password
+              </label>
               <div className="relative">
                 <input
                   type="password"
@@ -213,41 +253,30 @@ export const LoginPage: React.FC = () => {
                     setPassword(e.target.value);
                     if (passwordError) setPasswordError(null);
                   }}
-                  placeholder="password"
-                  className={`w-full bg-[#D1D5DB] text-slate-900 placeholder-slate-500 px-3.5 py-2.5 rounded-md text-sm font-medium focus:outline-none transition-all ${
-                    passwordError
-                      ? 'border-2 border-[#E04B4B] pr-10'
-                      : 'border border-transparent focus:ring-2 focus:ring-slate-400'
-                  }`}
+                  placeholder={passwordError ? '' : 'password'}
+                  className={`w-full bg-[#CFD3D8] text-slate-900 placeholder-[#7E8590] px-4 py-2.5 rounded-md text-sm font-medium focus:outline-none transition-all ${passwordError
+                    ? 'border-2 border-[#E04B4B] pr-10'
+                    : 'border border-transparent focus:ring-2 focus:ring-slate-400'
+                    }`}
                 />
                 {passwordError && (
-                  <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
-                    <svg
-                      className="w-5 h-5 text-[#E04B4B]"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm3.707 13.707a1 1 0 01-1.414 0L12 13.414l-2.293 2.293a1 1 0 01-1.414-1.414L10.586 12 8.293 9.707a1 1 0 011.414-1.414L12 10.586l2.293-2.293a1 1 0 011.414 1.414L13.414 12l2.293 2.293a1 1 0 010 1.414z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
+                  <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none flex items-center justify-center">
+                    <ValidationXIcon />
                   </div>
                 )}
               </div>
               {passwordError && (
-                <p className="text-xs font-semibold text-[#E04B4B] pt-0.5">
+                <p className="text-[13px] font-medium text-[#E04B4B] mt-1.5 leading-tight">
                   {passwordError}
                 </p>
               )}
             </div>
 
             {/* Action Buttons */}
-            <div className="space-y-3 pt-2">
+            <div className="pt-2 space-y-3">
               <button
                 type="submit"
-                className="w-full bg-[#8C8275] hover:bg-[#7D7366] active:bg-[#6E6457] text-white font-medium py-3 rounded-lg text-sm transition-colors shadow-md"
+                className="w-full bg-[#8C8273] hover:bg-[#7F7567] active:bg-[#70675A] text-white font-medium py-2.5 rounded-lg text-sm transition-colors cursor-pointer shadow-sm"
               >
                 Login
               </button>
@@ -255,14 +284,14 @@ export const LoginPage: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setAuthView('first-login')}
-                className="w-full bg-[#8C8275] hover:bg-[#7D7366] active:bg-[#6E6457] text-white font-medium py-3 rounded-lg text-sm transition-colors shadow-md"
+                className="w-full bg-[#8C8273] hover:bg-[#7F7567] active:bg-[#70675A] text-white font-medium py-2.5 rounded-lg text-sm transition-colors cursor-pointer shadow-sm"
               >
                 Forgot Password
               </button>
             </div>
 
             {/* Activate Account Link */}
-            <div className="text-center pt-3">
+            <div className="text-center pt-4">
               <button
                 type="button"
                 onClick={() => setAuthView('activate')}
@@ -273,45 +302,50 @@ export const LoginPage: React.FC = () => {
             </div>
           </form>
 
-          {/* Quick Demo Toolbar for Validation State Demo */}
-          <div className="pt-4 border-t border-slate-700/60 flex items-center justify-between text-[11px] text-slate-400">
-            <span>Demo states:</span>
-            <div className="flex gap-2">
+          {/* Screen Switcher & Demo Helper Toolbar */}
+          <div className="mt-8 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400">
+            <span className="font-medium text-slate-400">Demo Fill:</span>
+            <div className="flex flex-wrap gap-1.5">
               <button
                 type="button"
-                onClick={handleFillPolo}
-                className="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700"
+                onClick={handleFillPoloEmployee}
+                className="px-2.5 py-1 rounded bg-blue-900/60 hover:bg-blue-800/80 text-blue-200 border border-blue-700 text-xs font-medium cursor-pointer"
+                title="Fill Polo C. Gonzalez (gonzalezpolo256@gmail.com)"
               >
-                Polo
+                Polo (Employee)
               </button>
               <button
                 type="button"
-                onClick={handleFillManager}
-                className="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700"
+                onClick={handleFillMarcusManager}
+                className="px-2.5 py-1 rounded bg-amber-900/60 hover:bg-amber-800/80 text-amber-200 border border-amber-700 text-xs font-medium cursor-pointer"
+                title="Fill Marcus Rivera (j7core256@gmail.com)"
               >
-                Manager
+                Marcus (Manager)
               </button>
               <button
                 type="button"
-                onClick={handleTriggerValidationState}
-                className="px-2 py-1 rounded bg-rose-950/60 hover:bg-rose-900/80 text-rose-300 border border-rose-800"
+                onClick={handleSetScreen2}
+                className={`px-2.5 py-1 rounded text-xs transition-colors cursor-pointer ${usernameError
+                  ? 'bg-rose-900/90 text-rose-200 border border-rose-700 font-semibold'
+                  : 'bg-rose-950/60 hover:bg-rose-900/80 text-rose-300 border border-rose-900'
+                  }`}
               >
-                Validation State (Screen 2)
+                Error State
               </button>
             </div>
           </div>
         </div>
 
-        {/* Right Side: Welcome Hero Card */}
+        {/* Right Side: Welcome Card */}
         <div className="lg:col-span-7 flex justify-center lg:justify-end">
-          <div className="w-full max-w-lg bg-[#22262E] rounded-[32px] p-8 sm:p-12 flex flex-col items-center text-center shadow-2xl border border-white/5 space-y-6">
+          <div className="w-full max-w-[480px] bg-[#20242B] rounded-[32px] p-8 sm:p-12 lg:p-14 flex flex-col items-center text-center shadow-xl border border-white/5 space-y-7">
             <VeloceBigEmblem />
 
-            <div className="space-y-3">
-              <h2 className="text-xl sm:text-2xl font-extrabold tracking-wide text-white">
+            <div className="space-y-3.5">
+              <h2 className="text-xl sm:text-[24px] font-extrabold tracking-wide text-white uppercase">
                 WELCOME TO VELOCE SYSTEMS
               </h2>
-              <p className="text-xs sm:text-sm text-[#D1D5DB] leading-relaxed max-w-sm mx-auto">
+              <p className="text-xs sm:text-[14px] text-[#D1D5DB] leading-relaxed max-w-[380px] mx-auto font-normal">
                 At Veloce Systems, we build scalable, high-performance software solutions that power modern enterprises worldwide.
               </p>
             </div>
@@ -319,9 +353,9 @@ export const LoginPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Footer Bottom empty spacer for vertical centering balance */}
-      <div className="hidden sm:block text-[11px] text-slate-500 text-center">
-        © 2026 Veloce Systems Inc. All rights reserved.
+      {/* Footer Bottom Spacer */}
+      <div className="text-[11px] text-slate-500/80 text-center py-1">
+        © 2026 Veloce Systems Inc.
       </div>
     </div>
   );
